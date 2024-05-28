@@ -7,7 +7,9 @@ import Confirmacion from "./componentes-busqueda/Confirmacion"
 import ListaDeVuelos from "./componentes-busqueda/ListaDeVuelos"
 import { searchFlights } from "./componentes-busqueda/utils/ValidacionDeVuelos"
 import { useFetch, useFetch1 } from "./componentes-busqueda/utils/useFetch"
+
 import "./componentes-busqueda/styles/styles.css"
+import { Alert } from "@mui/material"
 
 function HomePage() {
   // Estado para almacenar los datos del formulario y la interfaz de usuario
@@ -30,6 +32,8 @@ function HomePage() {
     airports: [], // Lista de aeropuertos para la autocompletación
     isOneWay: false, // Indica si el usuario ha seleccionado solo vuelo de ida
   })
+
+  const [errorMessage, setErrorMessage] = useState("")
 
   // Cargar los aeropuertos disponibles al montar el componente
   useEffect(() => {
@@ -59,7 +63,16 @@ function HomePage() {
       returnDate
     )
 
-    if (origin && destination && departureDate && validFlightsOneWay.length > 0) {
+    if (!origin) {
+      handleError("Por favor ingrese un origen válido.")
+    } else if (!destination) {
+      handleError("Por favor ingrese un destino válido.")
+    } else if (!departureDate) {
+      handleError("Por favor selecciona una fecha de salida.")
+    } else if (validFlightsOneWay.length === 0) {
+      handleError("No hay vuelos disponibles para la selección realizada.")
+    } else {
+      setErrorMessage("") // Clear the error message if validation passes
       setFormData((prevData) => ({
         ...prevData,
         availableFlights: validFlightsOneWay,
@@ -67,9 +80,16 @@ function HomePage() {
         showFlights: true,
         isOneWay: !isRoundTrip,
       }))
-    } else {
-      alert("Por favor selecciona un origen, destino válidos y fechas válidas.")
     }
+  }
+
+  //funcion para manejar error en el filtro
+  const handleError = (message) => {
+    setErrorMessage(message)
+    setFormData((prevData) => ({
+      ...prevData,
+      showFlights: false,
+    }))
   }
 
   // Función para confirmar la selección y cerrar el modal
@@ -150,7 +170,7 @@ function HomePage() {
                 airports={formData.airports}
               />
             </div>
-          </div>
+          </div>  
           <div className="mx-2">
             <label className="label mb-2 block">Fecha de ida</label>
             <input
@@ -195,6 +215,14 @@ function HomePage() {
               Buscar
             </button>
           </div>
+          {/* Mensaje de error */}
+          {errorMessage && (
+            <div className="mx-4 my-2">
+              <Alert variant="outlined" severity="error">
+                {errorMessage}
+              </Alert>
+            </div>
+          )}
         </div>
       </div>
       {/* Modal para confirmar la selección */}
