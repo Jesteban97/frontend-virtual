@@ -55,7 +55,7 @@ function AutoCompletado({ value, onChange, airports }) {
 
       {/* Renderizar las sugerencias si hay alguna */}
       {suggestions.length > 0 && (
-        <ul className="absolute rounded-xl">
+        <ul className="absolute rounded-xl bg:white">
           {suggestions.map((airport, index) => (
             <li
               className="p-2 hover:bg-gray-300"
