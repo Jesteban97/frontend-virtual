@@ -58,7 +58,7 @@ function AirportAutocomplete({ value, onChange, airports }) {
 
       {/* Renderizar las sugerencias si hay alguna */}
       {suggestions.length > 0 && (
-        <ul className="rounded-xl absolute">
+        <ul className="rounded-xl absolute bg-white">
           {suggestions.map((airport, index) => (
             <li
               className="p-2 hover:bg-gray-300"

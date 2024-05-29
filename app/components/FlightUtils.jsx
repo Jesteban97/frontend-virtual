@@ -16,6 +16,10 @@ export function searchFlights(
     departureDate,
     returnDate
   ) {
+     // Validar que todos los parámetros necesarios están presentes
+  if (!origin || !destination || !departureDate) {
+    return { validFlightsOneWay: [], validFlightsRoundWay: [] };
+  }
     // Filtrar los vuelos válidos para el viaje de ida
     const validFlightsOneWay = allFlights.filter(
       (flight) =>

@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material"
 import React, { useEffect, useState } from "react";
 import AdultChildrenInput from "./AdultChildrenInput";
 import AirportAutocomplete from "./AirportAutocomplete";
@@ -29,6 +30,8 @@ function FlightSearch() {
     isOneWay: false, // Indica si el usuario ha seleccionado solo vuelo de ida
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   // Cargar los aeropuertos disponibles al montar el componente
   useEffect(() => {
     setFormData((prevData) => ({
@@ -56,6 +59,24 @@ function FlightSearch() {
       isRoundTrip,
     } = formData;
   
+    if (!origin) {
+      handleError("Por favor ingrese un origen válido.");
+      return;
+    }
+    if (!destination) {
+      handleError("Por favor ingrese un destino válido.");
+      return;
+    }
+    if (!departureDate) {
+      handleError("Por favor selecciona una fecha de salida.");
+      return;
+    }
+    if (isRoundTrip && !returnDate) {
+      handleError("Por favor selecciona una fecha de regreso.");
+      return;
+    }
+  
+    // If all required fields are filled, proceed with searching flights
     const { validFlightsOneWay, validFlightsRoundWay } = searchFlights(
       availableFlights,
       origin,
@@ -63,29 +84,28 @@ function FlightSearch() {
       departureDate,
       returnDate
     );
-    
-    if (
-      origin &&
-      destination &&
-      departureDate &&
-      validFlightsOneWay.length > 0
-    ) {
+  
+    if (validFlightsOneWay.length === 0) {
+      handleError("No hay vuelos disponibles para la selección realizada.");
+    } else {
+      setErrorMessage(""); // Clear the error message if validation passes
       setFormData((prevData) => ({
         ...prevData,
         availableFlights: validFlightsOneWay,
         availableFlightsRound: validFlightsRoundWay,
         showFlights: true,
         isOneWay: !isRoundTrip,
-
       }));
-    } else {
-      alert(
-        "Por favor selecciona un origen, destino válidos y fechas válidas."
-      );
     }
-    
   };
-  
+
+  const handleError = (message) => {
+    setErrorMessage(message);
+    setFormData((prevData) => ({
+      ...prevData,
+      showFlights: false,
+    }));
+  };
 
   // Función para confirmar la selección y cerrar el modal
   const handleAccept = () => {
@@ -226,6 +246,13 @@ function FlightSearch() {
             </button>
           </div>
         </div>
+        {errorMessage && (
+          <div className="mx-4 my-2">
+            <Alert variant="outlined" severity="error">
+              {errorMessage}
+            </Alert>
+          </div>
+        )}
       </div>
       {/* Modal para confirmar la selección */}
       {formData.showModal && (
