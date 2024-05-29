@@ -68,3 +68,9 @@
 .placeholder-black::placeholder {
   color: black/* Color negro con opacidad al 50% */
 }
+.footerr {
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
