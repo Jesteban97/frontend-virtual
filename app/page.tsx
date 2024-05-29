@@ -18,7 +18,11 @@ export default function page() {
         <ButtonSession path="/auth/login" content="Iniciar Sesión" />
                   
             </Navbar>
-      <FlightSearch />
+            <div className="mb-10">
+            <FlightSearch />
+            </div>
+      
+
       <div className="footerr">
       <Footer>
           <span>Copyright © Singapur Airlines 2024</span>

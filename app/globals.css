@@ -69,8 +69,8 @@
   color: black/* Color negro con opacidad al 50% */
 }
 .footerr {
-  
-  position: absolute;
+  margin-top: 20px;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
