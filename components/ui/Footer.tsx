@@ -15,6 +15,7 @@ const Footer = ({ children, }: { children: React.ReactNode }) => {
             justifyContent: 'center',
             color: '#FFF'
         }}>
+            
             {children}
         </Box>
     )
