@@ -1,13 +1,12 @@
 
-import React from 'react'
-import { signOut } from "next-auth/react";
-import { Button, Menu, MenuItem, MenuProps, Typography } from '@mui/material';
+import styled from '@emotion/styled';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PersonIcon from '@mui/icons-material/Person';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import styled from '@emotion/styled';
+import { Button, Menu, MenuItem, MenuProps, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import React from 'react'
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -66,7 +65,6 @@ const MenuSession = ({ userName }: Props) => {
   }
 
   const handleExit = () => {
-    signOut()
     router.push('/');
   }
 
