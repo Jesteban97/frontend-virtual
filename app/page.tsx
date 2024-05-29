@@ -1,10 +1,10 @@
 "use client";
+import ButtonSession from 'components/ui/ButtonSession';
+import Link from 'next/link';
 import React from 'react'
 import FlightSearch from './components/FlightSearch';
 import Footer from '../components/ui/Footer'
 import Navbar from '../components/ui/Navbar';
-import ButtonSession from 'components/ui/ButtonSession';
-import Link from 'next/link';
 
 
 
