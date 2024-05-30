@@ -15,12 +15,12 @@ export default function Home() {
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <Image src="/banco.png" style={styles.headerImage} alt="Banco Header" />
+        <img src="/banco.png" style={styles.headerImage} alt="Banco Header" />
       </div>
       <div style={styles.content}>
         <div style={styles.cardSection}>
           <div style={styles.accountInfo}>
-            <Image src="/tarjeta.png" alt="Account Card" style={styles.accountImage} />
+            <img src="/tarjeta.png" alt="Account Card" style={styles.accountImage} />
             <div style={styles.accountText}>
               <div style={styles.accountLabel}>Número de cuenta ahorro/corriente</div>
               <div style={styles.accountNumber}>******2676</div>

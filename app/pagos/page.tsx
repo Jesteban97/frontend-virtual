@@ -53,7 +53,7 @@ export default function Web() {
 
   return (
     <div className="flex min-h-screen justify-center bg-gray-100">
-      <Image src="./HomeReservas.png" alt="Home" style={{ width: "75%", height: "100%" }} />
+      <img src="/HomeReservas.png" alt="Home" style={{ width: "75%", height: "100%" }} />
       <div className="mx-auto mb-2 w-full max-w-md p-4">
         {/* VUELO COSTO */}
         <ResumenVuelo title="Vuelos">

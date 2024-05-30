@@ -110,7 +110,7 @@ const PaginaPrincipal = () => {
   return (
     <Contenedor>
       <Encabezado>
-        <Image src="/Header2.png" alt="Encabezado" />
+        <img src="/Header2.png" alt="Encabezado" />
       </Encabezado>
       <Titulo>PSE - Pagos Seguros en Línea / Persona Natural</Titulo>
       <ContenedorTipoUsuario>

@@ -6,7 +6,7 @@ import ButtonSession from "components/ui/ButtonSession"
 import Footer from "components/ui/Footer"
 import MenuSession from "components/ui/MenuSession"
 import Navbar from "components/ui/Navbar"
-
+import "styles/tailwind.css"
 import { UserRoles } from "interfaces"
 import { JWTPayload } from "interfaces/jwt.interface"
 
